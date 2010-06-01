@@ -4,15 +4,14 @@ Just my collection of emac related 'plugins' and stuff.
 
 h1. Installation
 
-# Download [Carbon Emacs](http://homepage.mac.com/zenitani/emacs-e.html) for the Mac 
+# Download "Carbon Emacs":http://homepage.mac.com/zenitani/emacs-e.html for the Mac 
 # git clone this repo to your home drive :
     cd ~/
     git clone git://github.com/pjammer/emacs_for_rails_devs.git
 # now we'll rename the directory and move a file out into the home directory:
     mv ~/emacs_for_rails_devs/ .emacs.d/
     mv .emacs.d/emacs_file_rename_.emacs .emacs
-
-# There is no step three...
+# There is no step four...
 
 I hope, maybe not, who knows.
 
@@ -20,7 +19,7 @@ h2. What's inside?
 
 Well the best stuff i could find on the web, that's what.  Nah, it's just my
 attempt at making emacs more like textmate to be honest.  Many of these things are snagged
-from [this blog post](http://codehunk.wordpress.com/2009/01/14/ruby-on-emacsjourney-from-textmate-to-emacs/),
+from "this blog post":http://codehunk.wordpress.com/2009/01/14/ruby-on-emacsjourney-from-textmate-to-emacs/ ,
  but I'm saving you the work of doing it.  pain in the ass
 it is to learn how to setup.  This is the repo i wish existed when i first 
 started this journey.
