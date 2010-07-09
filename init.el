@@ -42,7 +42,7 @@
   ;; If there is more than one, they won't work right.
  '(ecb-layout-window-sizes (quote (("left8" (ecb-directories-buffer-name 0.21693121693121692 . 0.2909090909090909) (ecb-sources-buffer-name 0.21693121693121692 . 0.23636363636363636) (ecb-methods-buffer-name 0.21693121693121692 . 0.2727272727272727) (ecb-history-buffer-name 0.21693121693121692 . 0.18181818181818182)))))
  '(ecb-options-version "2.40")
- '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+ '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -98,7 +98,7 @@
 ;; Twittering Mode a Twitter client in your fricking editor!
 (add-to-list 'load-path "~/.emacs.d/twittering-mode") ;; if you need
 (require 'twittering-mode)
-(setq twittering-username "namegoeshere")
+(setq twittering-username "yourname")
 
 ;; Revive
 (add-to-list 'load-path "~/.emacs.d/revive")
