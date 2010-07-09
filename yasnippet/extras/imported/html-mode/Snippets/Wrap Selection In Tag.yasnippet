@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: BC8B8AE2-5F16-11D9-B9C3-000D93589AF6
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: Wrap Selection in Open/Close Tag
+# binding: C-c M-w
+## condition: "text.html,
+# --
+<${1:p}>`yas/selected-text`</${1:$(replace-regexp-in-string "^[\s\t\n]*" "" yas/text)}>

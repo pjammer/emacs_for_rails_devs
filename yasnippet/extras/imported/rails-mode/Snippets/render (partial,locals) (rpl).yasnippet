@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: 6F41AFFD-B3A7-42D0-8A84-D6086C118D92
+# key: rpl
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: render (partial, locals)
+# condition: source.ruby.rails, (yas/rails-view-p)
+# --
+render :partial => "${1:item}", :locals => { :${2:$1} => ${3:@$1}$0 }

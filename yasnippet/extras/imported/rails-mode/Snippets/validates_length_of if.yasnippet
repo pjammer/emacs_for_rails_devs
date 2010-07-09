@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: EC511A43-D3B7-11DC-BA49-00112475D960
+# key: vlif
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: validates_length_of if
+## condition: "
+# --
+validates_length_of :${1:attribute}, :within => ${2:3..20}${3:, :on => :${4:create}, :message => "${5:must be present}"}, :if => proc { |obj| ${6:obj.condition?} }}

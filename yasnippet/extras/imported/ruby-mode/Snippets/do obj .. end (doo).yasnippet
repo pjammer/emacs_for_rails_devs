@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# uuid: 4B72C5C3-6CA7-41AC-B2F9-51DEA25D469E
+# key: do
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: Insert do |variable| … end
+## condition: "
+# --
+do${1:$(and (yas/text) " |")}${1:variable}${1:$(and (yas/text) "|")}
+	$0
+end

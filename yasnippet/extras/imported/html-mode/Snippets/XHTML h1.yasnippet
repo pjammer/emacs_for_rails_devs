@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: 65BA66DC-A07F-11D9-A5A2-000D93C8BE28
+# key: h1
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: Heading
+## condition: "text.html
+# --
+<h1 id="${1:$(replace-regexp-in-string " " "_" (downcase yas/text))}">${1:`yas/selected-text`}</h1>

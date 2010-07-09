@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# uuid: B660FC85-F69A-43BC-A72A-748CBEA0AA9A
+# key: finb
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: find_in_batches
+## condition: "
+# --
+find_in_batches(${1::conditions => {:${2:field} => ${3:true}\}}) do |${4:`(downcase (replace-regexp-in-string "\..*$"  "" (current-word)))`}s|
+	$4s.each do |$4|
+		$0
+	end
+end

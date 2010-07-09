@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# uuid: 0CCBE04E-F4E2-4E55-9506-7DE67ACF8388
+# key: cla
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: class .. < ParentClass .. initialize .. end
+## condition: "
+# --
+class ${1:ClassName} < ${2:ParentClass}
+	def initialize${3:$(and (string-match "[^\s\t]" yas/text) "(" )}${3:args}${3:$(and (string-match "[^\s\t]" yas/text) ")" )}
+		$0
+	end
+	
+	
+end

@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# uuid: 2031FC41-CBD3-41CC-B9A9-7F068E607A05
+# key: namespace
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: namespace :name ... task :default ... end
+## condition: "
+# --
+namespace ${1::name} do
+
+	desc ${2:"${3:default task for namespace $1}"}
+	task :default do
+		$0
+	end
+
+end

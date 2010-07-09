@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: B8F08BD7-6160-482C-8A3D-CBC6BD2079A4
+# key: bt
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: belongs_to
+## condition: "
+# --
+belongs_to :${1:object}${2:, :class_name => "${3:${1:$(replace-regexp-in-string "_" "" (capitalize yas/text))}}", :foreign_key => "${4:$1_id}"}

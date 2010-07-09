@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# uuid: C3C48948-4F49-484E-A8DE-DEB44723099E
+# key: optp
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: option_parse { .. }
+## condition: "
+# --
+require "optparse"
+
+options = {${1::default => "args"}}
+
+ARGV.options do |opts|
+	opts.banner = "Usage:  #{File.basename(\$PROGRAM_NAME)} [OPTIONS]${2:$(and (string-match "[^\s\t]" yas/text) " " )}${2:OTHER_ARGS}"
+	
+	opts.separator ""
+	opts.separator "Specific Options:"
+	
+	$0
+	
+	opts.separator "Common Options:"
+	
+	opts.on( "-h", "--help",
+	         "Show this message." ) do
+		puts opts
+		exit
+	end
+	
+	begin
+		opts.parse!
+	rescue
+		puts opts
+		exit
+	end
+end

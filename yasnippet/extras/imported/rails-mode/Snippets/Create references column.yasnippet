@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# uuid: EDA6568B-D533-11DC-BD8E-00112475D960
+# key: tcr
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: Table column(s) references
+# condition: (or (yas/rails-in-create-table-p) (yas/rails-in-change-table-p))
+# --
+t.references :${1:taggable}${2:, :polymorphic => ${3:{ :default => '${4:Photo}' \}}}
+$0

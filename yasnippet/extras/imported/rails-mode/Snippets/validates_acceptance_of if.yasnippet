@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: A2477223-AD5A-4723-8052-943CE9BA634D
+# key: vaoif
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: validates_acceptance_of if
+## condition: "
+# --
+validates_acceptance_of :${1:terms}${2:${3:, :accept => "${4:1}"}${5:, :message => "${6:You must accept the terms of service}"}}, :if => proc { |obj| ${7:obj.condition?} }}

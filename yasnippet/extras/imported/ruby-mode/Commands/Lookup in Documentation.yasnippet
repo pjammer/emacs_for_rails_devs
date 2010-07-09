@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# type: command
+# uuid: 63F3B3B7-CBE2-426B-B551-657733F3868B
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: Documentation for Word / Selection
+# binding: C-c M-h
+## condition: "
+# --
+(call-interactively (if (featurep 'ri) 'ri 'yas/ri))

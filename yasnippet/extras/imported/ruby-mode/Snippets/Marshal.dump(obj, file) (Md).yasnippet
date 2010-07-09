@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: 0CB48BCA-3F6E-4AE0-85BC-08A1D2508216
+# key: Md
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: Marshal.dump(.., file)
+## condition: "
+# --
+File.open(${1:"${2:path/to/file}.dump"}, "w") { |${3:file}| Marshal.dump(${4:obj}, ${3:file}) }

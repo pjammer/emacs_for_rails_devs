@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# uuid: A71A18CF-2D71-4BFF-AA0C-D9B8C59BC4EB
+# key: mod
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: module .. ClassMethods .. end
+## condition: "
+# --
+module ${1:ModuleName}
+	module ClassMethods
+		$0
+	end
+	
+	module InstanceMethods
+		
+	end
+	
+	def self.included(receiver)
+		receiver.extend         ClassMethods
+		receiver.send :include, InstanceMethods
+	end
+end

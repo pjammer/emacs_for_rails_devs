@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: 3E3AF538-171B-4108-AB92-827AD7E24C77
+# key: hmd
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: has_many :dependent => :destroy
+## condition: "
+# --
+has_many :${1:object}s${2:, :class_name => "$1", :foreign_key => "${4:reference}_id"}, :dependent => :destroy$0

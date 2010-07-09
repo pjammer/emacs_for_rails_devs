@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: F5CBBE16-F5CC-4EDA-8BC6-30281BD7D854
+# key: vpif
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: validates_presence_of if
+## condition: "
+# --
+validates_presence_of :${1:attribute}${2:, :on => :${3:create}, :message => "${4:can't be blank}"}, :if => proc { |obj| ${5:obj.condition?} }

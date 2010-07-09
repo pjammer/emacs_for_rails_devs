@@ -4,13 +4,12 @@ Just my collection of emac related 'plugins' and stuff.
 
 h1. Installation
 
-# Download "Carbon Emacs":http://homepage.mac.com/zenitani/emacs-e.html for the Mac 
+# "Download 23.2":http://ftp.gnu.org/gnu/emacs/ and build emacs from source using these "instructions":http://www.emacswiki.org/emacs/EmacsForMacOS#toc11 
 # git clone this repo to your home drive :
     cd ~/
     git clone git://github.com/pjammer/emacs_for_rails_devs.git
 # now we'll rename the directory and move a file out into the home directory:
     mv ~/emacs_for_rails_devs/ .emacs.d/
-    mv .emacs.d/emacs_file_rename_.emacs .emacs
 # There is no step four...
 
 I hope, maybe not, who knows.
@@ -23,3 +22,4 @@ from "this blog post":http://codehunk.wordpress.com/2009/01/14/ruby-on-emacsjour
  but I'm saving you the work of doing it.  pain in the ass
 it is to learn how to setup.  This is the repo i wish existed when i first 
 started this journey.
+I've add too much more then what that post has.  subtle shit that you love from textmate, into emacs.

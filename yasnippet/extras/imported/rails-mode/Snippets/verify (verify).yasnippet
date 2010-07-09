@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: 9ECBF20C-003E-41D9-A881-4BAC0656F9DC
+# key: verify
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: verify — render
+## condition: "
+# --
+verify :only => [:$1], :method => :post, :render => {:status => 500, :text => "use HTTP-POST"}

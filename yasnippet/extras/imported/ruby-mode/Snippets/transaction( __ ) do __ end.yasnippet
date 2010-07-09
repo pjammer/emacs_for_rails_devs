@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: 46BF99AD-E172-4D49-BCF7-072F4730E1D9
+# key: tra
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: transaction( .. ) { .. }
+## condition: "
+# --
+transaction${1:$(and (string-match "[^\s\t]" yas/text) "(" )}${1:true}${1:$(and (string-match "[^\s\t]" yas/text) ")" )} { $0 }

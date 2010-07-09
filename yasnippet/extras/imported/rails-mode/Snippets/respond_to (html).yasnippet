@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# uuid: 3BDD0D52-443E-4F5F-AE09-ABCC2ABE9A42
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: respond_to (html)
+# binding: C-c M-h
+# condition: (yas/rails-in-controller-p)
+# --
+respond_to do |wants|
+	wants.html do
+		`yas/selected-text`
+	end
+	wants.${1:js} { $0 }
+end

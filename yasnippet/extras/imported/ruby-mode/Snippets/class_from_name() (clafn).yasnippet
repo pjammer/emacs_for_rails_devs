@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# uuid: 2DBEE50B-3097-4A57-AB48-3586CF392D8B
+# key: clafn
+# contributor: Translated from textmate snippet by PROGRAM_NAME
+# name: class_from_name()
+## condition: "
+# --
+split("::").inject(Object) { |par, const| par.const_get(const) }
