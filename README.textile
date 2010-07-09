@@ -9,7 +9,7 @@ h1. Installation
     cd ~/
     git clone git://github.com/pjammer/emacs_for_rails_devs.git
 # now we'll rename the directory and move a file out into the home directory:
-    mv ~/emacs_for_rails_devs/ .emacs.d/
+    mv ~/emacs_for_rails_devs/ ~/.emacs.d/
 # There is no step four...
 
 I hope, maybe not, who knows.
