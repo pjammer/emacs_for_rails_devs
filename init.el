@@ -1,117 +1,104 @@
-;; EMACS config file
-;; Should contain everything a brother needs to get his emacs on
-;; anything more is beyond what is needed and you are greedy.
-;; -----------------------------
-
-;; General Config 
+;; General Config
 ;; ---------------
+;;(setq backup-directory-alist (list (cons ".*" (expand-file-name "~/.emacsbackup/"))))
+;; (setq version-control t ;; Use version numbers for backups
+;;       kept-new-versions 16 ;; Number of newest versions to keep
+;;       kept-old-versions 2 ;; Number of oldest versions to keep
+;;       delete-old-versions t ;; Ask to delete excess backup versions?
+;;       backup-by-copying-when-linked t) ;; Copy linked files, don't rename.
+;;   (defun force-backup-of-buffer ()
+;;     (let ((buffer-backed-up nil))
+;;    (backup-buffer)))
+;;   (add-hook 'before-save-hook  'force-backup-of-buffer)
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/"))))
+;; disable backup files
+(setq make-backup-files nil)
 
 (setq auto-save-default nil) ; turns off that blasted auto-save shit
 (add-to-list 'default-frame-alist '(height . 50))
 (add-to-list 'default-frame-alist '(width . 170))
-(require 'ido)
-(ido-mode t)
 (global-linum-mode 1)
-(delete-selection-mode t)
+(delete-selection-mode 1)
 (blink-cursor-mode t)
+(electric-pair-mode t)
+(tool-bar-mode -1); turn off toolbar
+(hl-line-mode 1) ; turn on highlight line mode
+(setq inhibit-startup-message t)
+(global-set-key "\C-x\C-k" 'kill-this-buffer)
+(add-hook 'ruby-mode-hook
+      (lambda () (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
+(fset 'yes-or-no-p 'y-or-n-p)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; making ruby mode take effect in rake files
 (setq auto-mode-alist (cons '("\\.rake\\'" . ruby-mode) auto-mode-alist))
-;; Show syntax highlighting when in ruby mode
-(add-hook 'ruby-mode-hook '(lambda () (font-lock-mode 1)))
+(setq auto-mode-alist (cons '("\\.erb\\'" . rhtml-mode) auto-mode-alist))
+;;; <M-x> to comment-or-uncomment-region (TextMate compatibility)
+(global-set-key (kbd "M-/") 'comment-or-uncomment-region)
+(global-set-key (kbd "\"") 'insert-pair)
+(global-set-key (kbd "C-S-m") 'magit-status)
+;; el-get sourcing
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(require 'el-get)
+(setq el-get-packages
+       '(
+	 autopair
+	 haml-mode
+	 magit
+	 rinari
+	 ruby-mode
+	 rvm
+	 ruby-end
+	 ruby-compilation
+	 rhtml-mode
+	 rspec-mode
+	 yaml-mode
+	 yasnippet
+	 zencoding-mode))
 
-;; Color-Theme setup
-(add-to-list 'load-path "~/.emacs.d/color-theme")
-(require 'color-theme)
-(color-theme-initialize)
-(add-to-list 'color-themes '(color-theme-red-knight \"red-knight\" \"Philip Ingram\"))
-(color-theme-red-knight)
+(el-get 'sync el-get-packages)
 
-;; ECB Dependencies and ECB : this gives you the textmate side bar thing
-;; ------------------------
-;;(load-file "~/.emacs.d/cedet-1.0pre7/common/cedet.el")
-;;(global-ede-mode 1)                      ; Enable the Project management system
-;;(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
-;;(global-srecode-minor-mode 1)            ; Enable template insertion menu
-(add-to-list 'load-path "~/.emacs.d/ecb") ; Add ECB to load path
-(require 'ecb)							 ; require the ECB
+;; Color-Theme
+;;(color-theme-chocolate-rain)
+(load-theme 'wombat)
+;;(load-theme 'naquadah)
+;; ido mode for file finding
+(require 'ido)
+(ido-mode 1)
+(setq ido-enable-prefix -1
+ido-enable-flex-matching 1
+ido-use-filename-at-point 'guess
+ido-max-prospects 10)
+;;; additional keys (copied from source file)
+(defun ido-my-keys ()
+  "Add my keybindings for ido."
+  (define-key ido-completion-map " " 'ido-next-match))
 
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(ecb-layout-window-sizes (quote (("left8" (ecb-directories-buffer-name 0.21693121693121692 . 0.2909090909090909) (ecb-sources-buffer-name 0.21693121693121692 . 0.23636363636363636) (ecb-methods-buffer-name 0.21693121693121692 . 0.2727272727272727) (ecb-history-buffer-name 0.21693121693121692 . 0.18181818181818182)))))
- '(ecb-options-version "2.40")
- '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(linum ((t (:inherit (shadow default))))))
-(setq ecb-auto-activate t) ; Sets ecb to appear all the time
+;;Rhtml mode for erb files
+(require 'rhtml-mode)
+(set-face-attribute 'default nil :height 160)
+(windmove-default-keybindings 'meta)
+;; Cucumber Mode
+(add-to-list 'load-path "~/.emacs.d/elisp/feature-mode")
+;; Haml mode stuff and Haml mode was not loading hope it does now.
+(require 'haml-mode)
+(add-hook 'haml-mode-hook
+                  '(lambda ()
+                         (setq indent-tabs-mode nil)
+                         (define-key haml-mode-map "\C-m" 'newline-and-indent)))
+;; ;; optional configurations
+;; ;; default language if .feature doesn't have "# language: fi"
+;; ;(setq feature-default-language "fi")
+;; ;; point to cucumber languages.yml or gherkin i18n.yml to use
+;; ;; exactly the same localization your cucumber uses
+;; ;(setq feature-default-i18n-file "/path/to/gherkin/gem/i18n.yml")
+;; ;; and load feature-mode
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
-;; Window Numbering - Used with M + window# e.g M+1 goes to window labeled w-0
-;; -----------------
-(add-to-list 'load-path "~/.emacs.d/windows-numbering") 
-(require 'window-numbering)
-(window-numbering-mode 1)
-
-;; Textmate ; again
-;; -----------------
-(add-to-list 'load-path "~/.emacs.d/textmate")
-(require 'textmate)
-(tm/initialize)
-;; YASnippets
-;; -----------------
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
-(require 'yasnippet)
-(setq yas/snippet-dirs (list
-                       ;; this first entry is where snippets tweaked
-                       ;; to your personal prefs go, can/should start
-                       ;; out empty
-                       "~/.emacs.d/snippets/"
-                       ;; the imported library snippets
-                       "~/.emacs.d/yasnippet/extras/imported/"
-                       ;; the standard library snippets (hopefully
-                       ;; soon to be deprecated) in favor of full
-                       ;; importation))
-                       "~/.emacs.d/yasnippet/snippets"))
-;; turn on yasnippet everywhere applicable
+;; Develop and keep personal snippets under ~/emacs.d/mysnippets
 (yas/global-mode 1)
-;; I even think you don't need this but leave it for good measure and
-;; for reevaluation
-(yas/reload-all)
-
-;; Rinari
-(add-to-list 'load-path "~/.emacs.d/rinari")
-(require 'rinari)
-
-;;; rhtml mode - used with rinari
-;;(add-to-list 'load-path "~/.emacs.d/rhtml-mode")
-;;(require 'rhtml-mode)
-
-;; ERC
-(add-to-list 'load-path "~/.emacs.d/erc")
-(require 'erc)
-
-;; Twittering Mode a Twitter client in your fricking editor!
-(add-to-list 'load-path "~/.emacs.d/twittering-mode") ;; if you need
-(require 'twittering-mode)
-(setq twittering-username "yourname")
-
-;; Revive
-(add-to-list 'load-path "~/.emacs.d/revive")
-(require 'revive)
-(autoload 'save-current-configuration "revive" "Save status" t)
-(autoload 'resume "revive" "Resume Emacs" t)
-(autoload 'wipe "revive" "Wipe Emacs" t)
-
-;; RVM in emacs
-(add-to-list 'load-path "~/.emacs.d/rvm")
-(require 'rvm)
-(rvm-use-default) ;; use rvm’s default ruby for the current Emacs session
-
-;; Move Line Region
-(add-to-list 'load-path "~/.emacs.d/move-line-region")
-(require 'move-line-region)
+(setq yas/root-directory '("~/.emacs.d/snippets"
+			 "~/.emacs.d/el-get/yasnippet/snippets"))
+;; Load the snippets
+(mapc 'yas/load-directory yas/root-directory)
+;; Load Magit, for some reason didn't load automatically

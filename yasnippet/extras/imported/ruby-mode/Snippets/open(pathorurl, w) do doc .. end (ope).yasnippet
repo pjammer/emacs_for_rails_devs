@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# uuid: 418F1817-255F-430A-B09A-222964ED66A7
-# key: ope
-# contributor: Translated from textmate snippet by PROGRAM_NAME
-# name: open("path/or/url", "w") { |io| .. }
-## condition: "
-# --
-open(${1:"${2:path/or/url/or/pipe}"}${3:$(and (string-match "^[rwab+]+$" yas/text) ", \"" )}${3:w}${3:$(and (string-match "^[rwab+]+$" yas/text) "\"" )}) { |${4:io}| $0 }
