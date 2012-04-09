@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: belongs_to (bt)
+# key: bt
+# --
+belongs_to :$0

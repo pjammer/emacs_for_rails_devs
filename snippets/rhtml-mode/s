@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: section (s)
+# key: s
+# --
+<section class="$1">
+  $0
+</section>

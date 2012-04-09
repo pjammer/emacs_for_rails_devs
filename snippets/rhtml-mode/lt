@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: link_to (lt)
+# key: lt
+# --
+<%= link_to "$1", $2_path$3 %>$0

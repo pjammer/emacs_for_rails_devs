@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: image_tag (im)
+# key: im
+# --
+<%= image_tag('$1') %>$0

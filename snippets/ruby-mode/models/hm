@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: has_many (hm)
+# key: hm
+# --
+has_many :$0

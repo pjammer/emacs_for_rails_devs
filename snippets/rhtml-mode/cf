@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: content_for (cf)
+# key: cf
+# --
+<% content_for :$1 do %> 
+  $0
+<% end %>

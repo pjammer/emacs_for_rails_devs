@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: label (l)
+# key: l
+# --
+<label>
+  $0
+</label>
