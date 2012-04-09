@@ -10,8 +10,9 @@ We use el-get as our package manager.  That means you will boot up your emacs fo
 0. Boot emacs.
 1. Paste this code into your *scratch* buffer:
 
-    (url-retrieve "https://raw.github.com/dimitri/el-get/master/el-get-install.el" (lambda (s) (let (el-get-master-branch) (end-of-buffer) (eval-print-last-sexp))))
-
+<pre>
+(url-retrieve "https://raw.github.com/dimitri/el-get/master/el-get-install.el" (lambda (s) (let (el-get-master-branch) (end-of-buffer) (eval-print-last-sexp))))
+</pre>
 2. With the cursor at the end of this code snippet hit C+j
 
 3. Reboot Emacs.
