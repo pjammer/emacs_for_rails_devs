@@ -27,12 +27,11 @@
 (setq auto-mode-alist (cons '("Capfile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.erb\\'" . rhtml-mode) auto-mode-alist))
 ;;; <M-x> to comment-or-uncomment-region (TextMate compatibility)
-(global-set-key (kbd "M-/") 'comment-or-uncomment-region)
+;; (global-set-key (kbd "M-/") 'comment-or-uncomment-region)
 (global-set-key (kbd "\"") 'insert-pair)
 (global-set-key (kbd "C-S-m") 'magit-status)
 
-;; Color-Theme
-(load-theme 'wombat)
+
 
 ;; el-get config
 ;; -------------
@@ -58,8 +57,10 @@
 
 ;; el-get Individual Recipe configs
 ;; --------------------------------
-
-
+;; Color-Theme
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+ (load-theme 'wombat)
+;; (load-theme 'zenburn t)
 ;; ido mode for file finding
 (require 'ido)
 (ido-mode 1)
@@ -87,3 +88,15 @@ ido-max-prospects 10)
 			 "~/.emacs.d/el-get/yasnippet/snippets"))
 ;; Load the snippets
 (mapc 'yas/load-directory yas/root-directory)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
