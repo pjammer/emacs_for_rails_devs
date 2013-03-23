@@ -1,23 +1,31 @@
-h1. Your Rails Oriented Emacs dot file.
+h1. Your Ruby and Rails Oriented Emacs dot file.
 
-Maybe it's a ruby based emacs file, whatever, screw you.
+Now used with version 24.3. We're up to date, son.
+
+h2. Highlights
+
+* Uses built in Ruby mode.
+* C+c C+c for comment and uncomment a region
+* C-S-m to see magit status
+* M+/ to autocomplete function names (type the first letters and hit M+/ and it'll autocomplete)
 
 h2. Installation
 
 We use el-get as our package manager.  That means you will boot up your emacs for the first time, install el-get with the code below and then reboot emacs. I think that's the easiest way to put it.
 
+-2. Install emacs using homebrew (chances are you are on OS X) <code>brew install emacs --HEAD --use-git-head --cocoa --srgb</code>
 -1. Git clone this repo to ~/.emacs.d/
 0. Boot emacs.
 1. Paste this code into your *scratch* buffer:
 
 <pre>
-(url-retrieve "https://raw.github.com/dimitri/el-get/master/el-get-install.el" (lambda (s) (let (el-get-master-branch) (end-of-buffer) (eval-print-last-sexp))))
+(url-retrieve "https://raw.github.com/dimitri/el-get/master/el-get-install.el" (lambda (s) (let (el-get-master-branch) (goto-char (point-max)) (eval-print-last-sexp))))
 </pre>
-2. With the cursor at the end of this code snippet hit C+j
+2. With the cursor at the end of this code snippet hit C+j ;; C+j means to hold down the Control Key and press the letter j at the same time.
 
 3. Reboot Emacs.
 You will see your machine download recipes/packages in the minibuffer.  If you get any 'errors', especially time out errors, just reboot emacs agin. el-get runs at startup and will look for recipes that were added, that it didn't have at last startup.
 
-If it really borks, just rm -rf ~/.emacs.d/ and start again.
+If it really borks, just <code>rm -rf ~/.emacs.d/<code> and start again.
 
 Keep an eye on here, as i get the urge to make things better every once in awhile.
