@@ -26,6 +26,6 @@ We use el-get as our package manager.  That means you will boot up your emacs fo
 3. Reboot Emacs.
 You will see your machine download recipes/packages in the minibuffer.  If you get any 'errors', especially time out errors, just reboot emacs agin. el-get runs at startup and will look for recipes that were added, that it didn't have at last startup.
 
-If it really borks, just <code>rm -rf ~/.emacs.d/ <code> and start again.
+If it really borks, just <code>rm -rf ~/.emacs.d/ </code> and start again.
 
 Keep an eye on here, as i get the urge to make things better every once in awhile.
