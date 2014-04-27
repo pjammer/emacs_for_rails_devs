@@ -1,10 +1,11 @@
 ;; General Config
 ;; ---------------
+;;(package-initialize)
 (setq backup-directory-alist (quote ((".*" . "~/.emacs.d/"))))
 (setq make-backup-files nil) ;; disable backup files
 (setq auto-save-default nil) ; turns off that blasted auto-save shit
-(add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(width . 170))
+(add-to-list 'default-frame-alist '(height . 30))
+(add-to-list 'default-frame-alist '(width . 145))
 (global-linum-mode t) ;; line numbers on the side.
 (delete-selection-mode t) ;; highlight a word and start typing, and it will delete the word and put your typed characters in it's place. highly annoying if not there.
 (blink-cursor-mode t) ;; blinking cursor easier to find, trust.
@@ -19,26 +20,29 @@
 ;; Move windows by using M+arrowkeyleft/right/whatever
 (windmove-default-keybindings 'meta)
 ;;(global-set-key (kbd "\"") 'insert-pair)
-(global-set-key (kbd "C-S-m") 'magit-status) ;; if you use git, great way to see wtf is going on
+
 
 ;; el-get config
 ;; -------------
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(require 'el-get)
-(setq el-get-packages
-       '(
-         haml-mode
-         magit
-         rvm
-         ruby-end
-         rspec-mode
-	 web-mode
-         yaml-mode
-         yasnippet
-         zencoding-mode))
-
-(el-get 'sync el-get-packages)
-
+(require 'package)
+(defun require-package (package &optional min-version no-refresh)
+  "Install given PACKAGE, optionally requiring MIN-VERSION.
+If NO-REFRESH is non-nil, the available package lists will not be
+re-downloaded in order to locate PACKAGE."
+  (if (package-installed-p package min-version)
+      t
+    (if (or (assoc package package-archive-contents) no-refresh)
+        (package-install package)
+      (progn
+        (package-refresh-contents)
+        (require-package package min-version t)))))
+;; Add the original Emacs Lisp Package Archive
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/"))
+;; Add the user-contributed repository
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 ;; Built In Theme
 ;; adwaita 	deeper-blue 	dichromacy 	leuven 	light-blue 	manoj-dark
 ;; misterioso 	tango 	tango-dark 	tsdh-dark 	tsdh-light 	wheatgrass
@@ -47,7 +51,7 @@
  (load-theme 'wombat)
 ;; ido mode for file finding
 ;; -------------------------
-(require 'ido)
+;;(require 'ido)
 (ido-mode 1)
 (setq ido-enable-prefix nil
 ido-enable-flex-matching t
@@ -66,13 +70,20 @@ ido-max-prospects 10)
 (add-hook 'ruby-mode-hook
      (lambda () (local-set-key (kbd "RET") 'reindent-then-newline-and-indent))) ;; hitting enter will indent.
 (global-set-key (kbd "\C-c\C-c") 'comment-or-uncomment-region) ;; highlight region and comment
-;;Rhtml mode for erb files
-;; --------------------
-;;(require 'rhtml-mode)
 
+;; Yasnippet config
+;; --------------------
+;; Develop and keep personal snippets under ~/emacs.d/mysnippets
+
+(require-package 'yasnippet-bundle)
+(yas/global-mode t)
+(setq yas/root-directory '("~/.emacs.d/snippets"))
+;; Load the snippets
+(mapc 'yas/load-directory yas/root-directory)
 ;;Web mode for erb files
 ;; --------------------
-(require 'web-mode)
+(require-package 'web-mode)
+;;(web-mode 1)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
@@ -84,26 +95,54 @@ ido-max-prospects 10)
       '(("erb"    . "\\.erb\\'"))
 )
 (setq web-mode-code-indent-offset 2)
-(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
+;; (define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
 (local-set-key (kbd "RET") 'newline-and-indent)
-(add-to-list 'web-mode-snippets '("lt" "<%= link_to " " %>"))
-(add-to-list 'web-mode-snippets '("ff" "<%= form_for " " %>"))
+;;(add-to-list 'web-mode-extra-snippets '("lt" "<%= link_to " " %>"))
+;;(add-to-list 'web-mode-extra-snippets '("ff" "<%= form_for " " %>"))
+
+(require-package 'ruby-end)
+(ruby-end-mode 1)
+(require-package 'inf-ruby)
+(require-package 'ruby-compilation)
+(require-package 'rspec-mode)
+(require-package 'rvm)
+(require-package 'yaml-mode)
 
 ;; Haml mode stuff and Haml mode was not loading hope it does now.
 ;; --------------------
-(require 'haml-mode)
-(add-hook 'haml-mode-hook
-                  '(lambda ()
-                         (setq indent-tabs-mode nil)
-                         (define-key haml-mode-map "\C-m" 'newline-and-indent)))
-;; Yasnippet config
-;; --------------------
-;; Develop and keep personal snippets under ~/emacs.d/mysnippets
-(yas/global-mode t)
-(setq yas/root-directory '("~/.emacs.d/snippets"
-			 "~/.emacs.d/el-get/yasnippet/snippets"))
-;; Load the snippets
-(mapc 'yas/load-directory yas/root-directory)
+;; (require 'haml-mode)
+;; (add-hook 'haml-mode-hook
+;;                   '(lambda ()
+;;                          (setq indent-tabs-mode nil)
+;;                          (define-key haml-mode-map "\C-m" 'newline-and-indent)))
+
+;; (require 'ruby-end-mode)
+(require-package 'magit)
+(global-set-key (kbd "C-S-m") 'magit-status) ;; if you use git, great way to see wtf is going on
+
+;; run rspec test
+;; (global-set-key (kbd "C-c t")
+;; 		(lambda()
+;; 		  (interactive)
+;; 		  (if string-match-p file-name-directory "spec"
+;; 			(shell-command (concat "rspec " (file-name-directory (buffer-file-name))))
+;; 			)
+;; 		  )
+;; 		)
+(global-set-key (kbd "C-c t")
+        (lambda()
+          (interactive)
+          (let* ((full-name (buffer-file-name))
+                 (path (when full-name
+                   (file-name-directory full-name))))
+	    (when (and path (string-match "spec" path))
+              (shell-command (concat "rspec " path)))
+	    (when (and path (string-match "test" path))
+	      (shell-command (concat "bundle exec rake test TEST= " path)))
+	    )
+	  )
+)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
