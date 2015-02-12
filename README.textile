@@ -1,6 +1,6 @@
 h1. Your Ruby and Rails Oriented Emacs dot file.
 
-Now used with version 24.3. We're up to date, son.
+Latest version 24.4.1
 
 h2. Highlights
 
@@ -13,12 +13,12 @@ h2. Highlights
 
 h2. Installation
 
-0. Install emacs using homebrew (chances are you are on OS X) <code>brew install emacs --HEAD --use-git-head --cocoa --srgb</code>
-1. Git clone this repo to ~/.emacs.d/
-2. Boot emacs
+#0 Install emacs using homebrew (chances are you are on OS X) <code>brew install emacs --cocoa</code>
+# Git clone this repo to ~/.emacs.d/
+# Boot emacs
 
-You will see your machine download packages in the minibuffer.  If you get any 'errors', especially time out errors, just reboot emacs agin. package runs at startup and will look for new packages that were added, for you in the future.
+h3. Minutia
+
+You will see your machine download packages in the minibuffer.  If you get any 'errors', especially time out errors, just reboot emacs agin. _Package_ always runs at startup and looks for any newly added packages to <code>init.el</code>.
 
 If it really borks, just <code>rm -rf ~/.emacs.d/ </code> and start again.
-
-Keep an eye on here, as i get the urge to make things better every once in awhile.
