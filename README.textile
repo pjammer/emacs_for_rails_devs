@@ -19,6 +19,6 @@ h2. Installation
 
 h3. Minutia
 
-You will see your machine download packages in the minibuffer.  If you get any 'errors', especially time out errors, just reboot emacs agin. _Package_ always runs at startup and looks for any newly added packages to <code>init.el</code>.
+You will see some activity in the minibuffer, as each package downloads. If you get any 'errors', especially time out errors, just reboot emacs. _Package_ always runs at startup and looks for any newly added packages to <code>init.el</code>.
 
 If it really borks, just <code>rm -rf ~/.emacs.d/ </code> and start again.
